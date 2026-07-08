@@ -53,7 +53,7 @@ export default function GalleryPage() {
           marginBottom: '1.2rem',
           border: '1px solid rgba(0,128,128,0.15)',
         }}>
-          {totalPhotos} photos
+          Clinic & Workshops
         </div>
         <h1 style={{
           fontSize: 'clamp(2rem, 5vw, 3.2rem)',

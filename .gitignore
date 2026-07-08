@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local debug / scraping output dumps
+debug.html
+debug-search-reviews.*
+gmb_loaded.*
+*.html
+*.txt
+scripts/scratch/

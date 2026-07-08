@@ -39,7 +39,7 @@ export default function HolisticHealingCTA() {
           Our approach treats the whole person—mind, body, and spirit—to ensure 
           long-lasting emotional clarity and physical vitality.
         </p>
-        <a 
+        <motion.a 
           href="#contact" 
           className="btn-primary" 
           style={{ 
@@ -48,9 +48,12 @@ export default function HolisticHealingCTA() {
             color: 'var(--primary-dark)',
             boxShadow: '0 10px 25px rgba(0,0,0,0.1)'
           }}
+          whileHover={{ scale: 1.04, y: -2, boxShadow: '0 12px 30px rgba(0,0,0,0.15)' }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 400, damping: 15 }}
         >
           Book an Appointment Today
-        </a>
+        </motion.a>
       </motion.div>
     </motion.section>
   );

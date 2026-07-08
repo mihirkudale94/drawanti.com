@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { faqs } from '@/data/faqs';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -32,41 +33,42 @@ export default function FAQ() {
                   <span className="faq-question-text">{faq.question}</span>
                   <span className="faq-icon">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path
+                      <motion.path
                         d="M6 9L12 15L18 9"
                         stroke="currentColor"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        style={{
-                          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                          transition: 'transform 0.3s ease',
-                          transformOrigin: 'center',
-                        }}
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                        style={{ originX: "12px", originY: "12px" }}
                       />
                     </svg>
                   </span>
                 </button>
-                <div
-                  className="faq-answer-wrapper"
-                  style={{
-                    maxHeight: isOpen ? '500px' : '0',
-                    opacity: isOpen ? 1 : 0,
-                    overflow: 'hidden',
-                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
-                  }}
-                >
-                  <div className="faq-answer">
-                    <p>{faq.answer}</p>
-                    {faq.bullets ? (
-                      <ul className="list-disc pl-5 space-y-1 ml-4" style={{ listStyleType: 'disc' }}>
-                        {faq.bullets.map((bullet) => (
-                          <li key={bullet}>{bullet}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <div className="faq-answer">
+                        <p>{faq.answer}</p>
+                        {faq.bullets ? (
+                          <ul className="list-disc pl-5 space-y-1 ml-4" style={{ listStyleType: 'disc' }}>
+                            {faq.bullets.map((bullet) => (
+                              <li key={bullet}>{bullet}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

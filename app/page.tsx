@@ -2,15 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import FAQ from '@/components/FAQ';
-import LiveTestimonials from '@/components/LiveTestimonials';
 import ComprehensiveServices from '@/components/ComprehensiveServices';
 import CoreServices from '@/components/CoreServices';
 import HolisticHealingCTA from '@/components/HolisticHealingCTA';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 
-const HERO_HEADING = "A Sound Mind in\na Sound Body";
+const HERO_HEADING = "A Sound Mind in\nA Sound Body";
+
+const MotionLink = motion.create(Link);
 
 export default function Home() {
   const [typedHeading, setTypedHeading] = useState("");
@@ -60,6 +62,11 @@ export default function Home() {
     <main>
       {/* 1. Hero Section */}
       <section id="hero" className="hero">
+        <div className="ambient-calm-bg" aria-hidden="true">
+          <div className="ambient-blob ambient-blob-primary"></div>
+          <div className="ambient-blob ambient-blob-secondary"></div>
+          <div className="ambient-blob ambient-blob-accent"></div>
+        </div>
         <motion.div 
           className="hero-content"
           variants={staggerContainer}
@@ -85,12 +92,26 @@ export default function Home() {
           <motion.p variants={fadeInUp}>& We Take Care of Both.</motion.p>
           
           <motion.div variants={fadeInUp} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
-            <a href="/patient-intake" className="btn-primary" style={{ background: 'var(--secondary)' }}>
+            <motion.a 
+              href="/patient-intake" 
+              className="btn-primary" 
+              style={{ background: 'var(--secondary)' }}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
               Start Online Consultation
-            </a>
-            <a href="#core-services" className="btn-primary" style={{ background: 'transparent', color: 'var(--primary-dark)', border: '1px solid var(--primary-dark)' }}>
+            </motion.a>
+            <motion.a 
+              href="#core-services" 
+              className="btn-primary" 
+              style={{ background: 'transparent', color: 'var(--primary-dark)', border: '1px solid var(--primary-dark)' }}
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
               Explore Services
-            </a>
+            </motion.a>
           </motion.div>
           
           <motion.div variants={fadeInUp} className="trust-bar" style={{ marginTop: '4rem' }}>
@@ -100,7 +121,7 @@ export default function Home() {
             </div>
             <div className="trust-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              B.H.M.S., M.A. (Psychology) | REBT Practitioner | Certified Soft Skills Trainer
+              B.H.M.S., M.A. (Psychology)
             </div>
             <div className="trust-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -154,10 +175,7 @@ export default function Home() {
       {/* 5. Holistic Healing CTA (The Bridge) */}
       <HolisticHealingCTA />
 
-      {/* 6. Live Testimonials Section (Social Proof) */}
-      <LiveTestimonials />
-
-      {/* 7. Insights / Success Stories Section (Deep Validation) */}
+      {/* 6. Insights / Success Stories Section (Deep Validation) */}
       <motion.section 
         id="insights" 
         initial="hidden"
@@ -207,6 +225,36 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* 7. Testimonials CTA */}
+      <motion.section
+        id="testimonials"
+        className="home-reviews-teaser"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
+        <div className="home-reviews-teaser-inner">
+          <div>
+            <p className="home-reviews-kicker">Google testimonials</p>
+            <h2>Read patient experiences on the dedicated testimonials page</h2>
+            <p>
+              Browse the complete Google Reviews collection in one place, then choose the
+              consultation path that feels right for you.
+            </p>
+          </div>
+          <MotionLink 
+            href="/patient-reviews" 
+            className="btn-primary"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 15 }}
+          >
+            View All Testimonials
+          </MotionLink>
+        </div>
+      </motion.section>
+
       {/* 8. About Section (The Authority) */}
       <motion.section 
         id="about" 
@@ -217,20 +265,18 @@ export default function Home() {
       >
         <h2 className="section-title">About Dr. Awanti Dhadphale</h2>
         <div className="about-container">
-          <Tilt tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.03} transitionSpeed={2000}>
-            <div className="about-image">
-              <Image 
-                src="/dravanti.jpg" 
-                alt="Dr. Awanti Dhadphale" 
-                width={500} 
-                height={500} 
-                style={{ width: '100%', height: 'auto', display: 'block' }} 
-                priority
-              />
-            </div>
+          <Tilt className="about-image" tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.03} transitionSpeed={2000}>
+            <Image 
+              src="/dravanti.jpg" 
+              alt="Dr. Awanti Dhadphale" 
+              width={500} 
+              height={500} 
+              style={{ width: '100%', height: 'auto', display: 'block' }} 
+              priority
+            />
           </Tilt>
           <div className="about-text">
-            <h3>B.H.M.S., M.A. (Psychology) | REBT Practitioner | Certified Soft Skills Trainer</h3>
+            <h3>B.H.M.S., M.A. (Psychology)</h3>
             <p style={{ marginBottom: '1.2rem' }}>
               Dr. Awanti is a compassionate and experienced practitioner who blends classical homeopathy with psychological insight to offer holistic healing. She completed her Bachelor of Homeopathic Medicine and Surgery (BHMS) in 2007 and holds a Master&apos;s degree in Psychology. Her journey has been shaped by a deep commitment to understanding the human mind and emotions, and she has further enriched her practice with training in Rational Emotive Behavioral Therapy (REBT). As a certified soft skills trainer, she brings a unique blend of empathy, communication, and therapeutic depth to every interaction.
             </p>
@@ -270,7 +316,7 @@ export default function Home() {
           <div className="contact-info">
             <div>
               <h3>Clinic Address</h3>
-              <p>Showroom no. 1, 1st Floor, Anant Rukmini Apt.</p>
+              <p>Showroom no. 1, 1st Floor, Anant Rukmini Co-op Hsg Soc,</p>
               <p>Besides Tathawade garden, Karve Nagar 411052</p>
             </div>
             
@@ -279,7 +325,7 @@ export default function Home() {
             <div>
               <h3>Contact Details</h3>
               <p><strong>Phone:</strong> <a href="tel:+919511213851" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>+91-9511213851</a></p>
-              <p><strong>Email:</strong> <a href="mailto:awantidhadphale@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>awantidhadphale@gmail.com</a></p>
+              <p><strong>Email:</strong> <a href="mailto:drawanti@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>drawanti@gmail.com</a></p>
               <p><strong>Consultation Time:</strong> 9:30 am to 2pm and 4pm to 8pm</p>
               <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/awantidhadphale/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>Dr Awanti Dhadphale</a></p>
             </div>

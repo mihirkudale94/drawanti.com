@@ -11,19 +11,19 @@ export const servicesData: ServiceItem[] = [
     id: 'homeopathic-consultation',
     title: 'Homeopathic Consultation',
     icon: '🍵',
-    shortDescription: 'Individualized classical homeopathy for physical and emotional well-being.',
-    fullDescription: 'We offer individualized treatment using classical homeopathy, guided by a deep understanding of both physical symptoms and emotional patterns. Our consultations go beyond surface-level diagnosis, exploring the root causes of illness through detailed case analysis. Remedies are selected with precision, aiming to restore balance, vitality, and emotional well-being. Flower remedies and biochemic medicines can also be used to support healing.'
+    shortDescription: 'Individualized classical Homeopathy for physical and emotional well-being.',
+    fullDescription: 'We offer individualized treatment using classical Homeopathy, guided by a deep understanding of both physical symptoms and emotional patterns. Our consultations go beyond surface-level diagnosis, exploring the root causes of illness through detailed case analysis. Remedies are selected with precision, aiming to restore balance, vitality, and emotional well-being. Flower remedies and biochemic medicines can also be used to support healing.'
   },
   {
     id: 'adolescent-counselling',
     title: 'Adolescent Counselling',
     icon: '🧠',
     shortDescription: 'A safe, non-judgmental space to build emotional intelligence and coping skills.',
-    fullDescription: 'These sessions provide a safe, non-judgmental space for individuals to explore their thoughts, emotions, and life challenges. Whether dealing with stress, behavioural issues, relationship concerns, psychological challenges; we help clients build emotional intelligence, self-awareness and coping skills. Our empathetic approach allows clients to feel deeply understood and empowered to make meaningful changes.'
+    fullDescription: 'These sessions provide a safe, non-judgmental space for individuals to explore their thoughts, emotions, and life challenges. Whether dealing with stress, behavioural issues, relationship concerns, psychological challenges & Academic Challenges; we help clients build emotional intelligence, self-awareness and coping skills. Our empathetic approach allows clients to feel deeply understood and empowered to make meaningful changes.'
   },
   {
     id: 'teachers-training',
-    title: "Teachers' Training Program",
+    title: "Teachers Training Program",
     icon: '🎨',
     shortDescription: 'Empowering educators with effective classroom management and emotional awareness.',
     fullDescription: 'Designed exclusively for teachers and school staff, these are introduced to effective methods of classroom management, helping them create structured yet emotionally safe learning environments. The workshops also explore the concept of Multiple Intelligences, helping teachers recognize and nurture diverse learning styles. Teachers are equipped to adapt to their methods and reach every student meaningfully. We guide educators to reflect on emotional patterns, communication styles and the deeper purpose of their profession. This self-awareness becomes the foundation for better classroom relationships and improved student performance.'

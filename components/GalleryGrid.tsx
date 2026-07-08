@@ -3,8 +3,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const PAGE_SIZE = 20;
+const EAGER_IMAGE_COUNT = 12;
 
 export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -13,7 +15,6 @@ export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
 
   useEffect(() => {
     setMounted(true);
-    return () => setMounted(false);
   }, []);
 
   const selectedFile = selectedIndex !== null ? imageFiles[selectedIndex] : null;
@@ -190,7 +191,6 @@ export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
           inset: 0;
           background: #05070b;
           z-index: 9999;
-          animation: lbFadeIn 0.2s ease forwards;
           color: white;
         }
 
@@ -289,7 +289,6 @@ export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
           height: min(60vh, calc(100vh - 16rem));
           display: grid;
           place-items: center;
-          animation: viewerImageIn 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .lightbox-img-wrap {
@@ -479,15 +478,20 @@ export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
             role="button"
             aria-label={`View image ${index + 1} of ${imageFiles.length}`}
           >
-            <Image
-              src={`/gallery_media/${filename}`}
-              alt={`Gallery image ${index + 1}`}
-              width={800}
-              height={600}
-              sizes="(min-width: 1280px) 23vw, (min-width: 768px) 30vw, (min-width: 480px) 46vw, 94vw"
-              loading="lazy"
-              className="masonry-img"
-            />
+            <motion.div 
+              layoutId={`gallery-media-${filename}`}
+              style={{ width: '100%', height: '100%', display: 'block', overflow: 'hidden' }}
+            >
+              <Image
+                src={`/gallery_media/${filename}`}
+                alt={`Gallery image ${index + 1}`}
+                width={800}
+                height={600}
+                sizes="(min-width: 1280px) 23vw, (min-width: 768px) 30vw, (min-width: 480px) 46vw, 94vw"
+                loading={index < EAGER_IMAGE_COUNT ? 'eager' : 'lazy'}
+                className="masonry-img"
+              />
+            </motion.div>
             <div className="masonry-overlay">
               <span className="masonry-overlay-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -518,93 +522,104 @@ export default function GalleryGrid({ imageFiles }: { imageFiles: string[] }) {
         </div>
       )}
 
-      {mounted && selectedIndex !== null && selectedFile && createPortal(
-        <div
-          className="lightbox-backdrop"
-          onClick={closeLightbox}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Image viewer"
-        >
-          <div className="lightbox-chrome lightbox-topbar">
-            <div className="lightbox-meta">
-              <span className="lightbox-eyebrow">Gallery viewer</span>
-              <span className="lightbox-counter">Photo {selectedIndex + 1} of {imageFiles.length}</span>
-            </div>
-            <div className="lightbox-actions">
-              <button
-                className="lightbox-icon-btn"
-                onClick={closeLightbox}
-                aria-label="Close image viewer"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
-            <figure className="lightbox-figure">
-              <div className="lightbox-img-wrap">
-                <Image
-                  key={selectedIndex}
-                  src={`/gallery_media/${selectedFile}`}
-                  alt={`Gallery image ${selectedIndex + 1}`}
-                  width={1200}
-                  height={900}
-                  sizes="(max-width: 760px) 96vw, 86vw"
-                  className="lightbox-img"
-                  priority
-                />
+      {mounted && createPortal(
+        <AnimatePresence>
+          {selectedIndex !== null && selectedFile && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="lightbox-backdrop"
+              onClick={closeLightbox}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Image viewer"
+            >
+              <div className="lightbox-chrome lightbox-topbar">
+                <div className="lightbox-meta">
+                  <span className="lightbox-eyebrow">Gallery viewer</span>
+                  <span className="lightbox-counter">Photo {selectedIndex + 1} of {imageFiles.length}</span>
+                </div>
+                <div className="lightbox-actions">
+                  <button
+                    className="lightbox-icon-btn"
+                    onClick={closeLightbox}
+                    aria-label="Close image viewer"
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M18 6 6 18" />
+                      <path d="m6 6 12 12" />
+                    </svg>
+                  </button>
+                </div>
               </div>
-            </figure>
-          </div>
 
-          <div className="lightbox-nav" onClick={(e) => e.stopPropagation()}>
-            <button
-              className="lightbox-arrow lightbox-arrow-prev"
-              onClick={goPrev}
-              aria-label="Previous image"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m15 18-6-6 6-6" />
-              </svg>
-            </button>
-            <button
-              className="lightbox-arrow lightbox-arrow-next"
-              onClick={goNext}
-              aria-label="Next image"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </button>
-          </div>
+              <div className="lightbox-stage" onClick={(e) => e.stopPropagation()}>
+                <figure className="lightbox-figure">
+                  <motion.div 
+                    layoutId={`gallery-media-${selectedFile}`}
+                    className="lightbox-img-wrap"
+                  >
+                    <Image
+                      key={selectedIndex}
+                      src={`/gallery_media/${selectedFile}`}
+                      alt={`Gallery image ${selectedIndex + 1}`}
+                      width={1200}
+                      height={900}
+                      sizes="(max-width: 760px) 96vw, 86vw"
+                      className="lightbox-img"
+                      priority
+                    />
+                  </motion.div>
+                </figure>
+              </div>
 
-          <div className="lightbox-chrome lightbox-bottom" onClick={(e) => e.stopPropagation()}>
-            <div className="lightbox-filmstrip" aria-label="Gallery thumbnails">
-              {imageFiles.map((filename, index) => (
+              <div className="lightbox-nav" onClick={(e) => e.stopPropagation()}>
                 <button
-                  key={filename}
-                  className={`lightbox-thumb${index === selectedIndex ? ' is-active' : ''}`}
-                  onClick={() => setSelectedIndex(index)}
-                  aria-label={`Open photo ${index + 1}`}
-                  aria-current={index === selectedIndex ? 'true' : undefined}
+                  className="lightbox-arrow lightbox-arrow-prev"
+                  onClick={goPrev}
+                  aria-label="Previous image"
                 >
-                  <Image
-                    src={`/gallery_media/${filename}`}
-                    alt=""
-                    fill
-                    sizes="58px"
-                  />
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
                 </button>
-              ))}
-            </div>
-            <p className="lightbox-hint">Arrow keys to navigate / Esc to close</p>
-          </div>
-        </div>,
+                <button
+                  className="lightbox-arrow lightbox-arrow-next"
+                  onClick={goNext}
+                  aria-label="Next image"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="m9 18 6-6-6-6" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="lightbox-chrome lightbox-bottom" onClick={(e) => e.stopPropagation()}>
+                <div className="lightbox-filmstrip" aria-label="Gallery thumbnails">
+                  {imageFiles.map((filename, index) => (
+                    <button
+                      key={filename}
+                      className={`lightbox-thumb${index === selectedIndex ? ' is-active' : ''}`}
+                      onClick={() => setSelectedIndex(index)}
+                      aria-label={`Open photo ${index + 1}`}
+                      aria-current={index === selectedIndex ? 'true' : undefined}
+                    >
+                      <Image
+                        src={`/gallery_media/${filename}`}
+                        alt=""
+                        fill
+                        sizes="58px"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <p className="lightbox-hint">Arrow keys to navigate / Esc to close</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>,
         document.body
       )}
     </>

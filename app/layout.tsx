@@ -6,6 +6,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Navbar from '@/components/Navbar';
 import { faqs } from '@/data/faqs';
+import SmoothScroll from '@/components/SmoothScroll';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,15 +14,15 @@ const siteUrl = 'https://www.drawanti.com';
 const siteName = 'Dr. Awanti Dhadphale';
 const phoneDisplay = '+91-9511213851';
 const phoneHref = 'tel:+919511213851';
-const email = 'awantidhadphale@gmail.com';
+const email = 'drawanti@gmail.com';
 const clinicAddress = {
-  streetAddress: 'Showroom no. 1, 1st Floor, Anant Rukmini Apt., Besides Tathawade garden',
+  streetAddress: 'Showroom no. 1, 1st Floor, Anant Rukmini Co-op Hsg Soc,, Besides Tathawade garden',
   addressLocality: 'Karve Nagar, Pune',
   addressRegion: 'Maharashtra',
   postalCode: '411052',
   addressCountry: 'IN',
 };
-const title = 'Dr. Awanti Dhadphale | Homeopathic Doctor & Clinical Psychologist in Pune';
+const title = 'Dr. Awanti Dhadphale | Homeopathic Doctor & Psychologist in Pune';
 const description =
   'Expert homeopathy and clinical psychology services by Dr. Awanti Dhadphale in Pune. Book online or in-clinic consultations for holistic physical and emotional care.';
 const previewImage = '/dravanti.jpg';
@@ -134,7 +135,7 @@ export default function RootLayout({
         telephone: phoneDisplay,
         email,
         description:
-          'Homeopathic doctor and clinical psychologist with 15+ years of experience. B.H.M.S., M.A. (Psychology) | REBT Practitioner | Certified Soft Skills Trainer.',
+          'Homeopathic doctor and clinical psychologist with 15+ years of experience. B.H.M.S., M.A. (Psychology).',
         image: `${siteUrl}${previewImage}`,
         address: {
           '@type': 'PostalAddress',
@@ -194,6 +195,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <SmoothScroll />
         <Navbar />
 
         {children}
@@ -204,20 +206,34 @@ export default function RootLayout({
           <div className="footer-container">
             <div className="footer-brand">
               <h2>Dr. Awanti Dhadphale</h2>
-              <p>A Sound Mind in a Sound Body &amp; We Take Care of Both.</p>
-              <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', opacity: 0.85 }}>
-                <a href={phoneHref} style={{ color: 'inherit', textDecoration: 'none' }}>Call {phoneDisplay}</a>
-              </p>
-              <p style={{ fontSize: '0.9rem', opacity: 0.85, marginTop: '0.25rem' }}>
-                <a href={`mailto:${email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{email}</a>
-              </p>
+              <p>A Sound Mind in A Sound Body &amp; We Take Care of Both.</p>
+              <div className="footer-contact-info">
+                <a href={phoneHref} className="footer-contact-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02C8.79 6.34 8.6 5.15 8.6 3.92c0-.5-.41-.92-.92-.92H4.1c-.5 0-.92.41-.92.92C3.18 13.18 10.82 20.82 20 20.82c.5 0 .92-.41.92-.92v-3.6c0-.5-.41-.92-.91-.92z"/>
+                  </svg>
+                  <span>{phoneDisplay}</span>
+                </a>
+                <a href={`mailto:${email}`} className="footer-contact-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                  <span>{email}</span>
+                </a>
+                <a href="https://www.linkedin.com/in/awantidhadphale/" target="_blank" rel="noopener noreferrer" className="footer-contact-link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+              </div>
             </div>
             <div className="footer-links">
               <h3>Quick Links</h3>
               <Link href="/">Home</Link>
               <Link href="/#about">About</Link>
               <Link href="/#core-services">Services</Link>
-              <Link href="/#testimonials">Testimonials</Link>
+              <Link href="/patient-reviews">Testimonials</Link>
               <Link href="/#faq">FAQ</Link>
               <Link href="/gallery">Gallery</Link>
               <Link href="/#contact">Contact</Link>

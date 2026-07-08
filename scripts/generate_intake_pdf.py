@@ -207,7 +207,7 @@ def build_pdf():
     story.append(
         Paragraph(
             "Clinic: Showroom no. 1, 1st Floor, Anant Rukmini Apt., Besides Tathawade garden, Karve Nagar 411052 | "
-            "Phone: +91-9511213851 | Email: awantidhadphale@gmail.com",
+            "Phone: +91-9511213851 | Email: drawanti@gmail.com",
             STYLES["Small"],
         )
     )

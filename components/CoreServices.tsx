@@ -17,7 +17,16 @@ export default function CoreServices() {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 18,
+        mass: 0.8
+      } 
+    }
   };
 
   return (
