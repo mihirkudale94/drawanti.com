@@ -44,7 +44,7 @@ export default function PatientIntakePage() {
             
             <p style={{ fontSize: '0.9rem', color: '#64748b', marginTop: '1.5rem' }}>
               Once completed, please scan or take a clear photo and email it to:<br/>
-              <a href="mailto:drawanti@gmail.com" style={{ color: 'var(--primary)', fontWeight: '600', textDecoration: 'none' }}>drawanti@gmail.com</a>
+              <a href="mailto:consult.drawanti@gmail.com" style={{ color: 'var(--primary)', fontWeight: '600', textDecoration: 'none' }}>consult.drawanti@gmail.com</a>
             </p>
           </div>
         </section>

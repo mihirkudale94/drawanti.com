@@ -132,7 +132,7 @@ def build_pdf():
         Paragraph("Dr. Awanti Dhadphale", STYLES["Title"]),
         Paragraph(
             "Homeopathic Case Record and Informed Consent<br/>"
-            "B.H.M.S., M.A. Psychology | REBT Practitioner | Certified Soft Skills Trainer",
+            "B.H.M.S., M.A. Psychology",
             STYLES["Subtitle"],
         ),
         Rule(),
@@ -207,7 +207,7 @@ def build_pdf():
     story.append(
         Paragraph(
             "Clinic: Showroom no. 1, 1st Floor, Anant Rukmini Apt., Besides Tathawade garden, Karve Nagar 411052 | "
-            "Phone: +91-9511213851 | Email: drawanti@gmail.com",
+            "Phone: +91-9511213851 | Email: consult.drawanti@gmail.com",
             STYLES["Small"],
         )
     )

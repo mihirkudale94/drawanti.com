@@ -12,6 +12,12 @@ export async function GET() {
       success: true,
       reviews: Array.isArray(reviews) ? reviews : [],
       sourceUrl: 'https://share.google/opMeC2c62E8WG3uPX',
+    }, {
+      headers: {
+        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        'CDN-Cache-Control': 'public, s-maxage=3600',
+        'Vercel-CDN-Cache-Control': 'public, s-maxage=3600',
+      }
     });
   } catch (error) {
     console.error('Error reading Google reviews:', error);
@@ -20,6 +26,10 @@ export async function GET() {
       success: false,
       reviews: [],
       sourceUrl: 'https://share.google/opMeC2c62E8WG3uPX',
+    }, {
+      headers: {
+        'Cache-Control': 'no-store, max-age=0, must-revalidate',
+      }
     });
   }
 }

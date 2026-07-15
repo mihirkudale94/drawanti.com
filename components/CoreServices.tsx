@@ -54,7 +54,6 @@ export default function CoreServices() {
               <li>Emotional disorders</li>
               <li>Lifestyle management</li>
               <li>Career guidance</li>
-              <li>Psychological assessments</li>
               <li>Geriatric counselling</li>
             </ul>
             <p className="service-target">

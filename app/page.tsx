@@ -7,8 +7,10 @@ import FAQ from '@/components/FAQ';
 import ComprehensiveServices from '@/components/ComprehensiveServices';
 import CoreServices from '@/components/CoreServices';
 import HolisticHealingCTA from '@/components/HolisticHealingCTA';
+import VideoInsights from '@/components/VideoInsights';
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
+import Magnetic from '@/components/Magnetic';
 
 const HERO_HEADING = "A Sound Mind in\nA Sound Body";
 
@@ -92,26 +94,30 @@ export default function Home() {
           <motion.p variants={fadeInUp}>& We Take Care of Both.</motion.p>
           
           <motion.div variants={fadeInUp} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center', marginTop: '1rem' }}>
-            <motion.a 
-              href="/patient-intake" 
-              className="btn-primary" 
-              style={{ background: 'var(--secondary)' }}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            >
-              Start Online Consultation
-            </motion.a>
-            <motion.a 
-              href="#core-services" 
-              className="btn-primary" 
-              style={{ background: 'transparent', color: 'var(--primary-dark)', border: '1px solid var(--primary-dark)' }}
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 15 }}
-            >
-              Explore Services
-            </motion.a>
+            <Magnetic>
+              <motion.a 
+                href="/patient-intake" 
+                className="btn-primary" 
+                style={{ background: 'var(--secondary)' }}
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+                Start Online Consultation
+              </motion.a>
+            </Magnetic>
+            <Magnetic>
+              <motion.a 
+                href="#core-services" 
+                className="btn-primary" 
+                style={{ background: 'transparent', color: 'var(--primary-dark)', border: '1px solid var(--primary-dark)' }}
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
+                Explore Services
+              </motion.a>
+            </Magnetic>
           </motion.div>
           
           <motion.div variants={fadeInUp} className="trust-bar" style={{ marginTop: '4rem' }}>
@@ -122,10 +128,6 @@ export default function Home() {
             <div className="trust-item">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               B.H.M.S., M.A. (Psychology)
-            </div>
-            <div className="trust-item">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-              5-Star Google Rated
             </div>
           </motion.div>
         </motion.div>
@@ -150,7 +152,7 @@ export default function Home() {
           <Tilt tiltMaxAngleX={2} tiltMaxAngleY={2} scale={1.01} transitionSpeed={2000}>
             <div style={{ background: 'linear-gradient(135deg, rgba(0, 128, 128, 0.05), rgba(46, 139, 87, 0.05))', padding: '4rem 3rem', borderRadius: '2rem', border: '1px solid rgba(0, 128, 128, 0.1)' }}>
               <h3 style={{ color: 'var(--primary)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', fontWeight: '700' }}>
-                The Core Problem I Solve Best
+                The Core Problem We solve best
               </h3>
               <h4 style={{ fontSize: '2.2rem', color: 'var(--primary-dark)', marginBottom: '1.5rem', fontWeight: '800', letterSpacing: '-0.02em' }}>
                 Emotional disconnection in everyday life
@@ -161,21 +163,63 @@ export default function Home() {
               </p>
             </div>
           </Tilt>
-
-
         </div>
       </motion.section>
 
-      {/* 3. Core Services Section (Individual & Group) */}
+      {/* 3. About Section (The Authority - Moved Up) */}
+      <motion.section 
+        id="about" 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeInUp}
+      >
+        <h2 className="section-title">About Dr. Awanti Dhadphale</h2>
+        <div className="about-container">
+          <Tilt className="about-image" tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.03} transitionSpeed={2000}>
+            <Image 
+              src="/dravanti.jpg" 
+              alt="Dr. Awanti Dhadphale" 
+              width={500} 
+              height={500} 
+              style={{ width: '100%', height: 'auto', display: 'block' }} 
+              priority
+            />
+          </Tilt>
+          <div className="about-text">
+            <h3>B.H.M.S., M.A. (Psychology)</h3>
+            <p style={{ marginBottom: '1.2rem' }}>
+              Dr. Awanti is a compassionate and experienced practitioner who blends classical homeopathy with psychological insight to offer holistic healing. She completed her Bachelor of Homeopathic Medicine and Surgery (BHMS) in 2007 and holds a Master&apos;s degree in Psychology. Her journey has been shaped by a deep commitment to understanding the human mind and emotions, and she has further enriched her practice with training in Rational Emotive Behavioral Therapy (REBT). As a certified soft skills trainer, she brings a unique blend of empathy, communication, and therapeutic depth to every interaction.
+            </p>
+            <p style={{ marginBottom: '1.2rem' }}>
+              Her clinic is a safe, non-judgmental space where individuals of all ages feel seen, heard, and supported. Dr. Awanti&apos;s ability to empathize with clients, offer unconditional positive regard, and create a sense of ease has earned her the trust of countless patients and families. Whether working with children, adolescents, adults, or professionals, she brings clarity, warmth, and insight to every session. Her vast experience in addressing both physical and emotional challenges allows her to treat the whole person—not just the symptoms.
+            </p>
+            <p style={{ marginBottom: '1.2rem' }}>
+              Dr. Awanti uses a thoughtful combination of classical homeopathic medicines, flower remedies, and counseling techniques to support healing. She also offers online consultations, making her services accessible to those beyond her immediate community. Her approach is deeply personalized, rooted in understanding each individual&apos;s emotional landscape and life context.
+            </p>
+            <p style={{ marginBottom: '1.2rem' }}>
+              Beyond her clinical practice, Dr. Awanti is a passionate educator and facilitator. She regularly visits schools, colleges, and organizations to conduct workshops and training programs for students, parents, and professionals. Her sessions cover a wide range of topics including parenting, adolescent counseling, stress management, personality development, and study skills. These workshops are known for being interactive, practical, and emotionally enriching—blending psychological theory with real-life tools.
+            </p>
+            <p style={{ marginBottom: '1.2rem' }}>
+              Her voice extends into the media as well. Dr. Awanti writes insightful articles on parenting and emotional wellness for newspapers like Lokmat, and has been featured in podcasts that explore mental health, youth empowerment, and holistic living. Her ability to connect with the youth, understand body language, and decode emotional cues makes her a powerful guide for those seeking clarity and confidence.
+            </p>
+            <p>
+              At the heart of her work is a simple yet profound mission: to help people feel empowered, emotionally balanced, and deeply understood. Her presence is calming, her listening is intuitive, and her support is unwavering. For those seeking healing, growth, or guidance, Dr. Awanti offers not just treatment—but transformation.
+            </p>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* 4. Core Services Section (Individual & Group) */}
       <CoreServices />
 
-      {/* 4. Comprehensive Services Section (Programs) */}
+      {/* 5. Video Insights Section (Reels - Moved Up) */}
+      <VideoInsights />
+
+      {/* 6. Comprehensive Services Section (Programs) */}
       <ComprehensiveServices />
 
-      {/* 5. Holistic Healing CTA (The Bridge) */}
-      <HolisticHealingCTA />
-
-      {/* 6. Insights / Success Stories Section (Deep Validation) */}
+      {/* 7. Insights / Success Stories Section (Deep Validation) */}
       <motion.section 
         id="insights" 
         initial="hidden"
@@ -225,7 +269,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* 7. Testimonials CTA */}
+      {/* 8. Testimonials CTA */}
       <motion.section
         id="testimonials"
         className="home-reviews-teaser"
@@ -243,66 +287,27 @@ export default function Home() {
               consultation path that feels right for you.
             </p>
           </div>
-          <MotionLink 
-            href="/patient-reviews" 
-            className="btn-primary"
-            whileHover={{ scale: 1.04, y: -2 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 400, damping: 15 }}
-          >
-            View All Testimonials
-          </MotionLink>
+          <Magnetic>
+            <MotionLink 
+              href="/patient-reviews" 
+              className="btn-primary"
+              whileHover={{ scale: 1.04, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 400, damping: 15 }}
+            >
+              View All Testimonials
+            </MotionLink>
+          </Magnetic>
         </div>
       </motion.section>
 
-      {/* 8. About Section (The Authority) */}
-      <motion.section 
-        id="about" 
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={fadeInUp}
-      >
-        <h2 className="section-title">About Dr. Awanti Dhadphale</h2>
-        <div className="about-container">
-          <Tilt className="about-image" tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.03} transitionSpeed={2000}>
-            <Image 
-              src="/dravanti.jpg" 
-              alt="Dr. Awanti Dhadphale" 
-              width={500} 
-              height={500} 
-              style={{ width: '100%', height: 'auto', display: 'block' }} 
-              priority
-            />
-          </Tilt>
-          <div className="about-text">
-            <h3>B.H.M.S., M.A. (Psychology)</h3>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Dr. Awanti is a compassionate and experienced practitioner who blends classical homeopathy with psychological insight to offer holistic healing. She completed her Bachelor of Homeopathic Medicine and Surgery (BHMS) in 2007 and holds a Master&apos;s degree in Psychology. Her journey has been shaped by a deep commitment to understanding the human mind and emotions, and she has further enriched her practice with training in Rational Emotive Behavioral Therapy (REBT). As a certified soft skills trainer, she brings a unique blend of empathy, communication, and therapeutic depth to every interaction.
-            </p>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Her clinic is a safe, non-judgmental space where individuals of all ages feel seen, heard, and supported. Dr. Awanti&apos;s ability to empathize with clients, offer unconditional positive regard, and create a sense of ease has earned her the trust of countless patients and families. Whether working with children, adolescents, adults, or professionals, she brings clarity, warmth, and insight to every session. Her vast experience in addressing both physical and emotional challenges allows her to treat the whole person—not just the symptoms.
-            </p>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Dr. Awanti uses a thoughtful combination of classical homeopathic medicines, flower remedies, and counseling techniques to support healing. She also offers online consultations, making her services accessible to those beyond her immediate community. Her approach is deeply personalized, rooted in understanding each individual&apos;s emotional landscape and life context.
-            </p>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Beyond her clinical practice, Dr. Awanti is a passionate educator and facilitator. She regularly visits schools, colleges, and organizations to conduct workshops and training programs for students, parents, and professionals. Her sessions cover a wide range of topics including parenting, adolescent counseling, stress management, personality development, and study skills. These workshops are known for being interactive, practical, and emotionally enriching—blending psychological theory with real-life tools.
-            </p>
-            <p style={{ marginBottom: '1.2rem' }}>
-              Her voice extends into the media as well. Dr. Awanti writes insightful articles on parenting and emotional wellness for newspapers like Lokmat, and has been featured in podcasts that explore mental health, youth empowerment, and holistic living. Her ability to connect with the youth, understand body language, and decode emotional cues makes her a powerful guide for those seeking clarity and confidence.
-            </p>
-            <p>
-              At the heart of her work is a simple yet profound mission: to help people feel empowered, emotionally balanced, and deeply understood. Her presence is calming, her listening is intuitive, and her support is unwavering. For those seeking healing, growth, or guidance, Dr. Awanti offers not just treatment—but transformation.
-            </p>
-          </div>
-        </div>
-      </motion.section>
+      {/* 9. Holistic Healing CTA (The Bridge - Moved Down) */}
+      <HolisticHealingCTA />
 
-      {/* 9. FAQ Section (Objection Handling) */}
+      {/* 10. FAQ Section (Objection Handling) */}
       <FAQ />
 
-      {/* 10. Contact Section (Final CTA) */}
+      {/* 11. Contact Section (Final CTA) */}
       <motion.section 
         id="contact" 
         initial="hidden"
@@ -325,9 +330,8 @@ export default function Home() {
             <div>
               <h3>Contact Details</h3>
               <p><strong>Phone:</strong> <a href="tel:+919511213851" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>+91-9511213851</a></p>
-              <p><strong>Email:</strong> <a href="mailto:drawanti@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>drawanti@gmail.com</a></p>
+              <p><strong>Email:</strong> <a href="mailto:consult.drawanti@gmail.com" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>consult.drawanti@gmail.com</a></p>
               <p><strong>Consultation Time:</strong> 9:30 am to 2pm and 4pm to 8pm</p>
-              <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/awantidhadphale/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}>Dr Awanti Dhadphale</a></p>
             </div>
           </div>
 
