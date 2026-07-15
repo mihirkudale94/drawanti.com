@@ -7,7 +7,6 @@ import MobileStickyCTA from '@/components/MobileStickyCTA';
 import Navbar from '@/components/Navbar';
 import { faqs } from '@/data/faqs';
 import SmoothScroll from '@/components/SmoothScroll';
-import ExitIntentPopup from '@/components/ExitIntentPopup';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -210,7 +209,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <SmoothScroll />
         <Navbar />
-        <ExitIntentPopup />
 
         {children}
 
