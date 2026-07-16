@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 
@@ -29,7 +30,7 @@ export const galleryMedia = {
 `;
 
   fs.writeFileSync(outputFilePath, content, 'utf8');
-  console.log(`Successfully generated ${outputFilePath} with ${imageFiles.length} images and video: ${videoFile}`);
+  // console.log(`Successfully generated ${outputFilePath} with ${imageFiles.length} images and video: ${videoFile}`);
 } catch (error) {
   console.error('Failed to generate gallery media data:', error);
   process.exit(1);

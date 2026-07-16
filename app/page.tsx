@@ -3,11 +3,19 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import FAQ from '@/components/FAQ';
+import dynamic from 'next/dynamic';
 import ComprehensiveServices from '@/components/ComprehensiveServices';
 import CoreServices from '@/components/CoreServices';
 import HolisticHealingCTA from '@/components/HolisticHealingCTA';
-import VideoInsights from '@/components/VideoInsights';
+
+const VideoInsights = dynamic(() => import('@/components/VideoInsights'), {
+  ssr: false,
+  loading: () => <div style={{ minHeight: '300px', display: 'grid', placeItems: 'center', color: 'var(--primary)' }}>Loading insights...</div>
+});
+
+const FAQ = dynamic(() => import('@/components/FAQ'), {
+  ssr: false,
+});
 import { motion } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import Magnetic from '@/components/Magnetic';
@@ -178,7 +186,7 @@ export default function Home() {
         <div className="about-container">
           <Tilt className="about-image" tiltMaxAngleX={4} tiltMaxAngleY={4} scale={1.03} transitionSpeed={2000}>
             <Image 
-              src="/dravanti.jpg" 
+              src="/dravanti.webp" 
               alt="Dr. Awanti Dhadphale" 
               width={500} 
               height={500} 
@@ -344,6 +352,7 @@ export default function Home() {
               marginHeight={0} 
               marginWidth={0} 
               src="https://maps.google.com/maps?q=Dr+Awanti+Dhadphale&t=&z=15&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
             ></iframe>
           </div>
           

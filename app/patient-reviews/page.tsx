@@ -14,7 +14,7 @@ export const metadata: Metadata = {
       "Read testimonials from Dr. Awanti Dhadphale's Google Business profile.",
     images: [
       {
-        url: 'https://www.drawanti.com/dravanti.jpg',
+        url: 'https://www.drawanti.com/dravanti.webp',
         width: 1200,
         height: 630,
         alt: 'Testimonials for Dr. Awanti Dhadphale',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Testimonials | Dr. Awanti Dhadphale',
     description: "Read testimonials from Dr. Awanti Dhadphale's Google Business profile.",
-    images: ['https://www.drawanti.com/dravanti.jpg'],
+    images: ['https://www.drawanti.com/dravanti.webp'],
   },
   alternates: {
     canonical: 'https://www.drawanti.com/patient-reviews',

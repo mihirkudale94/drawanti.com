@@ -5,6 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Tilt from 'react-parallax-tilt';
 import Script from 'next/script';
 
+interface InstagramWindow extends Window {
+  instgrm?: {
+    Embeds: {
+      process: () => void;
+    };
+  };
+}
+
 type Reel = {
   id: string;
   src: string;
@@ -49,9 +57,10 @@ export default function VideoInsights() {
   useEffect(() => {
     if (activeReel && typeof window !== 'undefined') {
       const processTimer = setTimeout(() => {
-        if ((window as any).instgrm) {
+        const instagramWindow = window as unknown as InstagramWindow;
+        if (instagramWindow.instgrm) {
           try {
-            (window as any).instgrm.Embeds.process();
+            instagramWindow.instgrm.Embeds.process();
           } catch (err) {
             console.error('Error processing Instagram embed:', err);
           }
@@ -229,8 +238,11 @@ export default function VideoInsights() {
         src="https://www.instagram.com/embed.js" 
         strategy="lazyOnload" 
         onLoad={() => {
-          if (typeof window !== 'undefined' && (window as any).instgrm) {
-            (window as any).instgrm.Embeds.process();
+          if (typeof window !== 'undefined') {
+            const instagramWindow = window as unknown as InstagramWindow;
+            if (instagramWindow.instgrm) {
+              instagramWindow.instgrm.Embeds.process();
+            }
           }
         }} 
       />

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       "Browse photos and media from Dr. Awanti Dhadphale's clinic, events, consultations, and healing sessions.",
     images: [
       {
-        url: 'https://www.drawanti.com/dravanti.jpg',
+        url: 'https://www.drawanti.com/dravanti.webp',
         width: 1200,
         height: 630,
         alt: 'Gallery - Dr. Awanti Dhadphale Clinic',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Gallery | Dr. Awanti Dhadphale',
     description: "Browse photos and media from Dr. Awanti Dhadphale's clinic.",
-    images: ['https://www.drawanti.com/dravanti.jpg'],
+    images: ['https://www.drawanti.com/dravanti.webp'],
   },
   alternates: {
     canonical: 'https://www.drawanti.com/gallery',
@@ -35,7 +35,6 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   const { videoFile, imageFiles } = galleryMedia;
-  const totalPhotos = imageFiles.length;
 
   return (
     <main style={{ paddingTop: '7rem', paddingBottom: '6rem', background: 'var(--background)', minHeight: '100vh' }}>
@@ -135,7 +134,7 @@ export default function GalleryPage() {
                 controls
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
                 style={{ width: '100%', maxHeight: '65vh', objectFit: 'contain', display: 'block' }}
               >
                 <source src={`/gallery_media/${videoFile}`} type="video/mp4" />

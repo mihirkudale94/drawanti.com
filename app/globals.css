@@ -552,7 +552,7 @@ section {
   border-radius: 2rem;
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--surface-border);
-  max-width: 100%;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
@@ -560,12 +560,13 @@ section {
   .about-container {
     gap: 4rem;
     padding: 4rem;
+    align-items: center;
   }
 }
 
 .about-image {
-  flex: 0 1 600px;
-  max-width: min(100%, 660px);
+  flex: 1 1 450px;
+  max-width: min(100%, 480px);
   margin: 0 auto;
   border-radius: 1.5rem;
   box-shadow: var(--shadow-xl);
@@ -583,7 +584,7 @@ section {
 }
 
 .about-text {
-  flex: 1 1 450px;
+  flex: 1 1 600px;
   font-size: 1.05rem;
   line-height: 1.85;
   color: #475569;
