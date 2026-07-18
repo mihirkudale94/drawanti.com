@@ -151,7 +151,7 @@ export default function Home() {
       >
         <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{ fontSize: '2.5rem', color: 'var(--primary-dark)', fontWeight: '800', lineHeight: '1.2', marginBottom: '1.5rem', letterSpacing: '-0.02em' }}>
-            A sanctuary for emotional clarity, holistic healing, and empowered learning
+            A Safe Platform for emotional clarity, holistic healing, and empowered learning
           </h2>
           <p style={{ fontSize: '1.3rem', color: '#475569', marginBottom: '4rem', fontStyle: 'italic' }}>
             Healing is not just about treatment—it&apos;s about trust, empathy, and transformation.
