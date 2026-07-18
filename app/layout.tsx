@@ -165,11 +165,6 @@ export default function RootLayout({
           {
             '@type': 'EducationalOccupationalCredential',
             credentialCategory: 'certificate',
-            name: 'Rational Emotive Behavioral Therapy (REBT) Practitioner',
-          },
-          {
-            '@type': 'EducationalOccupationalCredential',
-            credentialCategory: 'certificate',
             name: 'Certified Soft Skills Trainer',
           },
         ],
@@ -182,7 +177,6 @@ export default function RootLayout({
         knowsAbout: [
           'Homeopathy',
           'Clinical Psychology',
-          'REBT Therapy',
           'Adolescent Counselling',
           'Parenting Workshops',
           'Stress Management',
